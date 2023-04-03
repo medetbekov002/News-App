@@ -29,39 +29,42 @@ class ArticleDataSource(val source: CoroutineScope) : PageKeyedDataSource<Int, A
     ) {
         source.launch {
             try {
-                val response = RetrofitClient.api.getBreakingNews("in",1, Constants.API_KEY)
+                val response = RetrofitClient.api.getBreakingNews("in", 1, Constants.API_KEY)
                 when {
                     response.isSuccessful -> {
                         response.body()?.articles?.let {
                             breakingNews.postValue(it)
-                            callback.onResult(it,null,2)
+                            callback.onResult(it, null, 2)
                         }
                     }
                 }
-            }catch (exception: Exception) {
+            } catch (exception: Exception) {
                 Log.e("DataSource::", exception.message.toString())
             }
         }
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
-        TODO("Not yet implemented")
+
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
-
         try {
-
-            val response = RetrofitClient.api.getBreakingNews("in",params.requestedLoadSize, Constants.API_KEY)
-            when {
-                response.isSuccessful -> {
-                    response.body()?.articles?.let {
-
-                        callback.onResult(it,params.key+1)
+            source.launch {
+                val response = RetrofitClient.api.getBreakingNews(
+                    "in",
+                    params.requestedLoadSize,
+                    Constants.API_KEY
+                )
+                when {
+                    response.isSuccessful -> {
+                        response.body()?.articles?.let {
+                            callback.onResult(it, params.key + 1)
+                        }
                     }
                 }
             }
-        }catch (exception: Exception) {
+        } catch (exception: Exception) {
             Log.e("DataSource::", exception.message.toString())
         }
     }
