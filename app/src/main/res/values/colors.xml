@@ -9,7 +9,7 @@
     <color name="bgLineColor">#606470</color>
     <color name="background">#dddddd</color>
     <color name="card_color">#2e343d</color>
-    <color name="white">#00FFFFFF</color>
+    <color name="white">#FFFFFF</color>
 
     <style name="TittleTextStyle">
         <item name="android:textSize">16sp</item>
