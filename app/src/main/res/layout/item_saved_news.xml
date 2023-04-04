@@ -98,19 +98,6 @@
                 app:layout_constraintTop_toBottomOf="@id/tvPublished" />
 
             <ImageView
-                android:id="@+id/ivSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_save"
-                app:tint="@color/white"
-                android:padding="8dp"
-                android:tag="0"
-                android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ivShare"
-                app:layout_constraintTop_toBottomOf="@id/bgLine" />
-
-            <ImageView
                 android:id="@+id/ivShare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
