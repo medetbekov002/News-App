@@ -78,4 +78,8 @@ class SavedNewsAdapter : RecyclerView.Adapter<SavedNewsAdapter.SavedViewHolder>(
         onShareNewsClick = listener
     }
 
+    override fun getItemCount(): Int {
+
+    }
+
 }
